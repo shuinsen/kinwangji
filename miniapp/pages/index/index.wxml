@@ -1,0 +1,14 @@
+<view class="container">
+  <form bindsubmit="onSubmit">
+    <input name="year" placeholder="年" />
+    <input name="month" placeholder="月" />
+    <input name="day" placeholder="日" />
+    <input name="hour" placeholder="时" />
+    <button formType="submit">占卜</button>
+  </form>
+  <view wx:if="{{result}}">
+    <text>{{result.pan}}</text>
+    <text>吉方向: {{result.direction}}</text>
+    <text>穿衣颜色: {{result.color}}</text>
+  </view>
+</view>
