@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wangji Fortune</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    const { useState } = React;
+    function App() {
+        const [form, setForm] = useState({year:'', month:'', day:'', hour:''});
+        const [result, setResult] = useState(null);
+      const handleChange = e => setForm({...form, [e.target.name]: e.target.value});
+      const handleSubmit = async e => {
+        e.preventDefault();
+        const params = new URLSearchParams(form);
+        const res = await fetch(`http://localhost:8000/fortune?${params.toString()}`);
+          const data = await res.json();
+          setResult(data);
+      };
+      return (
+        React.createElement('div', null,
+          React.createElement('form', {onSubmit: handleSubmit},
+            React.createElement('input', {name:'year', placeholder:'Year', value:form.year, onChange:handleChange}),
+            React.createElement('input', {name:'month', placeholder:'Month', value:form.month, onChange:handleChange}),
+            React.createElement('input', {name:'day', placeholder:'Day', value:form.day, onChange:handleChange}),
+            React.createElement('input', {name:'hour', placeholder:'Hour', value:form.hour, onChange:handleChange}),
+            React.createElement('button', {type:'submit'}, '占卜')
+          ),
+            result && React.createElement('div', null,
+              React.createElement('pre', null, result.pan),
+              React.createElement('p', null, `吉方向: ${result.direction}`),
+              React.createElement('p', null, `穿衣颜色: ${result.color}`)
+            )
+        )
+      );
+    }
+    ReactDOM.render(React.createElement(App), document.getElementById('root'));
+  </script>
+</body>
+</html>
