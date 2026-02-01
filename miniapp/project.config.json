@@ -1,0 +1,6 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "wangji-miniapp",
+  "appid": "tour-appid",
+  "compileType": "miniprogram"
+}

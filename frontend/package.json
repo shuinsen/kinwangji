@@ -1,0 +1,13 @@
+{
+  "name": "wangji-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "echo 'open index.html in your browser'",
+    "test": "echo 'No tests specified' && exit 0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
